@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Recommender</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<h1>🎬 Movie Recommendation System</h1>
+
+<form method="POST">
+    <input
+        list="movie-list"
+        name="movie"
+        placeholder="Search movie..."
+        value="{{ request.form.movie if request.form.movie else 'Avatar' }}"
+        required
+    >
+
+    <datalist id="movie-list">
+        {% for movie in movies %}
+            <option value="{{ movie }}"></option>
+        {% endfor %}
+    </datalist>
+
+    <button type="submit">Recommend</button>
+</form>
+
+<div class="container">
+
+{% if recommendations %}
+    {% for movie in recommendations %}
+        <div class="card">
+            <img src="{{ movie.poster }}" alt="{{ movie.title }}">
+            <h3>{{ movie.title }}</h3>
+            <p>⭐ {{ movie.rating }}</p>
+            <p>{{ movie.overview }}</p>
+        </div>
+    {% endfor %}
+{% else %}
+    <p style="margin-top:20px;">No recommendations found.</p>
+{% endif %}
+
+</div>
+
+</body>
+</html>
