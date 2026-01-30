@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: movie-recommender
+    env: python
+    region: oregon
+    plan: free
+    branch: main
+    buildCommand: bash build.sh
+    startCommand: gunicorn app:app
+    envVars:
+      - key: TMDB_API_KEY
+        scope: run
