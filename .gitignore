@@ -47,8 +47,8 @@ dist/
 *.egg-info/
 
 # ===============================
-# Large ML artifacts (OPTIONAL)
-# Comment these out if using Git LFS
+# Large ML artifacts
+# Generated during build (see create_pickle.py)
 # ===============================
-# *.pkl
-# *.joblib
+*.pkl
+*.joblib
